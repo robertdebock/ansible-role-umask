@@ -1,31 +1,30 @@
-umask
-=========
-
-<img src="https://docs.ansible.com/ansible-tower/3.2.4/html_ja/installandreference/_static/images/logo_invert.png" width="10%" height="10%" alt="Ansible logo" align="right"/>
-<a href="https://travis-ci.org/robertdebock/ansible-role-umask"> <img src="https://travis-ci.org/robertdebock/ansible-role-umask.svg?branch=master" alt="Build status"/></a> <img src="https://img.shields.io/ansible/role/d/"/> <img src="https://img.shields.io/ansible/quality/"/>
-
-<a href="https://github.com/robertdebock/ansible-role-umask/actions"><img src="https://github.com/robertdebock/ansible-role-umask/workflows/GitHub%20Action/badge.svg"/></a>
+# [umask](#umask)
 
 Install and configure umask on your system.
 
-Example Playbook
-----------------
+|Travis|GitHub|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-umask.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-umask)|[![github](https://github.com/robertdebock/ansible-role-umask/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-umask/actions)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/umask)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/umask)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-umask.svg)](https://github.com/robertdebock/ansible-role-umask/releases/)|
 
-This example is taken from `molecule/resources/playbook.yml` and is tested on each push, pull request and release.
+## [Example Playbook](#example-playbook)
+
+This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
-- name: Converge
+- name: converge
   hosts: all
   become: yes
   gather_facts: yes
 
   roles:
-    - role: robertdebock.umask```
+    - role: robertdebock.umask
+      umask: "0027"
+```
 
-The machine you are running this on, may need to be prepared, I use this playbook to ensure everything is in place to let the role work.
+The machine may need to be prepared using `molecule/resources/prepare.yml`:
 ```yaml
 ---
-- name: Converge
+- name: prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -34,7 +33,7 @@ The machine you are running this on, may need to be prepared, I use this playboo
     - role: robertdebock.bootstrap
 ```
 
-After running this role, this playbook runs to verify that everything works, this may be a good example how you can use this role.
+For verification `molecule/resources/verify.yml` runs after the role has been applied.
 ```yaml
 ---
 - name: Verify
@@ -43,22 +42,28 @@ After running this role, this playbook runs to verify that everything works, thi
   gather_facts: yes
 
   tasks:
-    - name: check if connection still works
-      ping:
+    - name: check umask
+      shell: . /root/.bashrc && umask
+      register: umask_check_umask
+      failed_when:
+        - umask_check_umask.stdout != "0027"
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
 
-Role Variables
---------------
+## [Role Variables](#role-variables)
 
 These variables are set in `defaults/main.yml`:
 ```yaml
 ---
-# defaults file for umask```
+# defaults file for umask
 
-Requirements
-------------
+umask: "0022"
+
+umask_user: root
+```
+
+## [Requirements](#requirements)
 
 - Access to a repository containing packages, likely on the internet.
 - A recent version of Ansible. (Tests run on the current, previous and next release of Ansible.)
@@ -71,19 +76,16 @@ The following roles can be installed to ensure all requirements are met, using `
 
 ```
 
-Context
--------
+## [Context](#context)
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://robertdebock.nl/) for further information.
 
 Here is an overview of related roles:
 ![dependencies](https://raw.githubusercontent.com/robertdebock/drawings/artifacts/umask.png "Dependency")
 
+## [Compatibility](#compatibility)
 
-Compatibility
--------------
-
-This role has been tested on these [container images](https://hub.docker.com/):
+This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
 
 |container|tags|
 |---------|----|
@@ -92,20 +94,19 @@ This role has been tested on these [container images](https://hub.docker.com/):
 |el|7, 8|
 |fedora|all|
 |opensuse|all|
-|ubuntu|bionic|
+|ubuntu|all|
 
-The minimum version of Ansible required is 2.7 but tests have been done to:
+The minimum version of Ansible required is 2.8, tests have been done to:
 
-- The previous version, on version lower.
+- The previous version.
 - The current version.
 - The development version.
 
 
 
-Testing
--------
+## [Testing](#testing)
 
-[Unit tests](https://travis-ci.org/robertdebock/ansible-role-umask) are done on every commit, pull request, release and periodically.
+[Unit tests](https://travis-ci.com/robertdebock/ansible-role-umask) are done on every commit, pull request, release and periodically.
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-umask/issues)
 
@@ -137,13 +138,13 @@ image="centos" tox
 image="debian" tag="stable" tox
 ```
 
-License
--------
+## [License](#license)
 
 Apache-2.0
 
 
-Author Information
-------------------
+## [Author Information](#author-information)
 
 [Robert de Bock](https://robertdebock.nl/)
+
+Please consider [sponsoring me](https://github.com/sponsors/robertdebock).
