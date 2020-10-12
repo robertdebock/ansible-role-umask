@@ -3,4 +3,5 @@
 
 umask: "0022"
 
-umask_user: root
+umask_users:
+  - root

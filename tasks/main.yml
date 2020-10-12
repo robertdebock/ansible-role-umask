@@ -12,4 +12,5 @@
     create: yes
     mode: "0644"
   become: yes
-  become_user: "{{ umask_user }}"
+  become_user: "{{ item }}"
+  loop: "{{ umask_users }}"

@@ -4,7 +4,7 @@ Install and configure umask on your system.
 
 |Travis|GitHub|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-umask.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-umask)|[![github](https://github.com/robertdebock/ansible-role-umask/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-umask/actions)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/umask)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/umask)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-umask.svg)](https://github.com/robertdebock/ansible-role-umask/releases/)|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-umask.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-umask)|[![github](https://github.com/robertdebock/ansible-role-umask/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-umask/actions)|[![quality](https://img.shields.io/ansible/quality/51248)](https://galaxy.ansible.com/robertdebock/umask)|[![downloads](https://img.shields.io/ansible/role/d/51248)](https://galaxy.ansible.com/robertdebock/umask)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-umask.svg)](https://github.com/robertdebock/ansible-role-umask/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -60,7 +60,8 @@ These variables are set in `defaults/main.yml`:
 
 umask: "0022"
 
-umask_user: root
+umask_users:
+  - root
 ```
 
 ## [Requirements](#requirements)

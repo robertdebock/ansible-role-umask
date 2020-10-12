@@ -6,9 +6,9 @@
       - umask | int
     quiet: yes
 
-- name: test if umask_user is set correctly
+- name: test if umask_users is set correctly
   assert:
     that:
       - umask_user is defined
-      - umask_user | length > 0
+      - umask_user is iterable
     quiet: yes
