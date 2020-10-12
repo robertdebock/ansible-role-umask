@@ -9,6 +9,7 @@
 - name: test if umask_users is set correctly
   assert:
     that:
-      - umask_user is defined
-      - umask_user is iterable
+      - umask_users is defined
+      - umask_users | length > 0
+      - umask_users is iterable
     quiet: yes
