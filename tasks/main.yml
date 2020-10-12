@@ -1,0 +1,15 @@
+---
+# tasks file for umask
+- name: include assert.yml
+  include_tasks: assert.yml
+  run_once: yes
+
+- name: set umask
+  lineinfile:
+    path: ~/.bashrc
+    line: "umask {{ umask }}"
+    regexp: '^umask\s+\d+'
+    create: yes
+    mode: "0644"
+  become: yes
+  become_user: "{{ umask_user }}"

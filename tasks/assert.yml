@@ -1,0 +1,14 @@
+---
+- name: test if umask is set correctly
+  assert:
+    that:
+      - umask is defined
+      - umask | int
+    quiet: yes
+
+- name: test if umask_user is set correctly
+  assert:
+    that:
+      - umask_user is defined
+      - umask_user | length > 0
+    quiet: yes
