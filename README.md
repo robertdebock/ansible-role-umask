@@ -44,6 +44,7 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
   tasks:
     - name: check umask
       shell: . /root/.bashrc && umask
+      changed_when: no
       register: umask_check_umask
       failed_when:
         - umask_check_umask.stdout != "0027"
