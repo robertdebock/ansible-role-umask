@@ -3,7 +3,6 @@
   assert:
     that:
       - umask is defined
-      - umask is number
     quiet: yes
 
 - name: test if umask_users is set correctly
