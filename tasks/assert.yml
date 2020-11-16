@@ -9,6 +9,5 @@
   assert:
     that:
       - umask_users is defined
-      - umask_users | length > 0
       - umask_users is iterable
     quiet: yes
