@@ -1,4 +1,5 @@
 ---
+
 - name: test if umask is set correctly
   assert:
     that:
