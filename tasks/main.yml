@@ -7,7 +7,7 @@
   delegate_to: localhost
 
 - name: set umask
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: ~/.bashrc
     line: "umask {{ umask }}"
     regexp: '^umask\s+\d+'
