@@ -7,7 +7,7 @@
   tasks:
     - name: check umask
       ansible.builtin.shell:
-        cmd: . /root/.bashrc && umask
+        cmd: ". /root/.bashrc && umask"
       changed_when: no
       register: umask_check_umask
       failed_when:
