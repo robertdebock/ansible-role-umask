@@ -5,4 +5,4 @@
 repository:
   description: Install and configure umask on your system.
   homepage: https://robertdebock.nl/
-  topics: umask, ansible, molecule, tox, playbook, hacktoberfest
+  topics: umask, ansible, molecule, tox, playbook
