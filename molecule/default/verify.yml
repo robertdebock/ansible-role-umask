@@ -5,7 +5,7 @@
   gather_facts: yes
 
   tasks:
-    - name: check umask
+    - name: Check umask
       ansible.builtin.shell:
         cmd: ". /root/.bashrc && umask"
       changed_when: no
