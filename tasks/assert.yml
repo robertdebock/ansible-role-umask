@@ -5,6 +5,7 @@
     that:
       - umask is defined
       - umask is string
+      - umask is not none
     quiet: yes
 
 - name: assert | Test if umask_users is set correctly
